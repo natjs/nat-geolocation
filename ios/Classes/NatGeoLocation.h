@@ -1,9 +1,8 @@
 //
-//  NatGeo.h
-//  WeexDemo
+//  NatGeoLocation.h
 //
-//  Created by HOOLI-008 on 17/1/7.
-//  Copyright © 2017年 taobao. All rights reserved.
+//  Created by 黄亚克 on 17/1/7.
+//  Copyright © 2017 All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +12,7 @@
 typedef void (^NatCallback)(id error,id result);
 
 
-@interface NatGeoLocation : NSObject<CLLocationManagerDelegate>
+@interface NatGeolocation : NSObject<CLLocationManagerDelegate>
 
 + (id)singletonManger;
 //获取一次地理位置

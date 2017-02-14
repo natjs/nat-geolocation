@@ -1,12 +1,11 @@
 //
-//  NatGeo.m
-//  WeexDemo
+//  NatGeoLocation.m
 //
-//  Created by HOOLI-008 on 17/1/7.
-//  Copyright © 2017年 taobao. All rights reserved.
+//  Created by 黄亚克 on 17/1/7.
+//  Copyright © 2017 All rights reserved.
 //
 
-#import "NatGeoLocation.h"
+#import "NatGeolocation.h"
 
 
 @interface NatGeoLocation ()
@@ -17,11 +16,11 @@
 }
 @property (nonatomic, strong)NatCallback callback;
 @property(nonatomic, strong)CLLocationManager* locationManager;
-@property(nonatomic, assign)NSInteger isget;
+@property(nonatomic, assign)NSInteger isget; //get方法为0 watch 方法为1
 @property(nonatomic, strong)NSDictionary *options;
 @property(nonatomic, assign)NSInteger maximumAge;
-@property(nonatomic, strong)NSDate *lastDate;
-@property(nonatomic, assign)NSInteger timeOut;
+@property(nonatomic, strong)NSDate *lastDate;//上次返回时间
+@property(nonatomic, assign)NSInteger timeOut;//设置超时
 
 @end
 
@@ -201,8 +200,6 @@
     // 1.获取用户位置的对象
     CLLocation *location = [locations lastObject];
     CLLocationCoordinate2D coordinate = location.coordinate;
-    NSLog(@"纬度:%f 经度:%f", coordinate.latitude, coordinate.longitude);
-//    NSString *str = [NSString stringWithFormat:@"纬度:%f 经度:%f",coordinate.latitude, coordinate.longitude];
     // 2.停止定位
     if (self.isget == 0) {
         [manager stopUpdatingLocation];
