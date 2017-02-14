@@ -1,14 +1,14 @@
 //
-//  NatGeoLocation.m
+//  NatGeolocation.m
 //
-//  Created by 黄亚克 on 17/1/7.
-//  Copyright © 2017 All rights reserved.
+//  Created by huangyake on 17/1/7.
+//  Copyright © 2017 Nat. All rights reserved.
 //
 
 #import "NatGeolocation.h"
 
 
-@interface NatGeoLocation ()
+@interface NatGeolocation ()
 
 {
     NSTimer *timer;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation NatGeoLocation
+@implementation NatGeolocation
 
 
 

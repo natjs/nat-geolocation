@@ -1,8 +1,8 @@
 //
-//  NatGeoLocation.h
+//  NatGeolocation.h
 //
-//  Created by 黄亚克 on 17/1/7.
-//  Copyright © 2017 All rights reserved.
+//  Created by huangyake on 17/1/7.
+//  Copyright © 2017 Nat. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
