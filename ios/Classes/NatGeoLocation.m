@@ -113,9 +113,6 @@
         self.locationManager.delegate = self;
         
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        [self.locationManager requestAlwaysAuthorization];
-        [self.locationManager
-         requestWhenInUseAuthorization];
         [self.locationManager startUpdatingLocation];
          timer = [NSTimer scheduledTimerWithTimeInterval:self.timeOut/1000.000 target:self selector:@selector(locationSuccess) userInfo:nil repeats:YES];
 //        [self.locationManager requestLocation];
@@ -160,9 +157,6 @@
        
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        [self.locationManager requestAlwaysAuthorization];
-        [self.locationManager
-         requestWhenInUseAuthorization];
         [self.locationManager startUpdatingLocation];
     }
 
