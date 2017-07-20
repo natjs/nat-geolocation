@@ -29,7 +29,7 @@
 
 
 
-+ (NatGeoLocation *)singletonManger{
++ (NatGeolocation *)singletonManger{
     static id manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
