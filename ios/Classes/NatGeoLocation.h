@@ -2,7 +2,7 @@
 //  NatGeolocation.h
 //
 //  Created by huangyake on 17/1/7.
-//  Copyright © 2017 Nat. All rights reserved.
+//  Copyright © 2017 Instapp. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -23,4 +23,5 @@ typedef void (^NatCallback)(id error,id result);
 - (void)clearWatch:(NatCallback)back;
 //关闭
 - (void)close;
+
 @end

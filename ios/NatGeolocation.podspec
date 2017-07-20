@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NatGeolocation"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "Nat.js Module: Geolocation."
 
   # This description is used to generate tags and improve search results.
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "nat" => "i@natjs.com" }
+  s.author             = { "nat" => "hi@natjs.com" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Natjs/nat-geolocation.git", :tag => "0.0.4" }
+  s.source       = { :git => "https://github.com/natjs/nat-geolocation.git", :tag => "0.0.5" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
