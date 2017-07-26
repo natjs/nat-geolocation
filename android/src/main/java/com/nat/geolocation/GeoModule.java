@@ -12,10 +12,10 @@ import java.util.List;
 
 /**
  * Created by xuqinchao on 17/1/7.
- * Copyright (c) 2017 Nat. All rights reserved.
+ * Copyright (c) 2017 Instapp. All rights reserved.
  */
 
-public class HLGeoModule{
+public class GeoModule {
 
     private LocationManager mWatchLocationManager;
     int maximumAge = 0;
@@ -24,17 +24,17 @@ public class HLGeoModule{
     MyCountDownTimer countDownTimer;
     LocationListener mLocationListener;
     private Context mContext;
-    private static volatile HLGeoModule instance = null;
+    private static volatile GeoModule instance = null;
 
-    private HLGeoModule(Context context){
+    private GeoModule(Context context){
         mContext = context;
     }
 
-    public static HLGeoModule getInstance(Context context) {
+    public static GeoModule getInstance(Context context) {
         if (instance == null) {
-            synchronized (HLGeoModule.class) {
+            synchronized (GeoModule.class) {
                 if (instance == null) {
-                    instance = new HLGeoModule(context);
+                    instance = new GeoModule(context);
                 }
             }
         }
@@ -42,10 +42,10 @@ public class HLGeoModule{
         return instance;
     }
 
-    public void get(final HLModuleResultListener listener) {
+    public void get(final ModuleResultListener listener) {
         if (listener == null) return;
         if (mContext == null) {
-            listener.onResult(HLConstant.HL_ERROR_NULL_CONTEXT);
+            listener.onResult(Constant.ERROR_NULL_CONTEXT);
             return;
         }
 
@@ -59,7 +59,7 @@ public class HLGeoModule{
         } else if (providers.contains(LocationManager.NETWORK_PROVIDER)) {
             locationProvider = LocationManager.NETWORK_PROVIDER;
         } else {
-            listener.onResult(HLUtil.getError(HLConstant.LOCATION_UNAVAILABLE, HLConstant.LOCATION_UNAVAILABLE_CODE));
+            listener.onResult(Util.getError(Constant.LOCATION_UNAVAILABLE, Constant.LOCATION_UNAVAILABLE_CODE));
             return;
         }
 
@@ -94,15 +94,15 @@ public class HLGeoModule{
         }
     }
 
-    public void watch(HashMap<String, Object> options, final HLModuleResultListener listener) {
+    public void watch(HashMap<String, Object> options, final ModuleResultListener listener) {
         if (listener == null) return;
         if (mContext == null) {
-            listener.onResult(HLConstant.HL_ERROR_NULL_CONTEXT);
+            listener.onResult(Constant.ERROR_NULL_CONTEXT);
             return;
         }
 
         if (mWatchLocationManager != null) {
-            listener.onResult(HLUtil.getError(HLConstant.LOCATION_SERVICE_BUSY, HLConstant.LOCATION_SERVICE_BUSY_CODE));
+            listener.onResult(Util.getError(Constant.LOCATION_SERVICE_BUSY, Constant.LOCATION_SERVICE_BUSY_CODE));
             return;
         }
 
@@ -112,12 +112,12 @@ public class HLGeoModule{
             model = options.containsKey("model") ? (String) options.get("model") : model;
         } catch (ClassCastException e) {
             e.printStackTrace();
-            listener.onResult(HLUtil.getError(HLConstant.WATCH_LOCATION_INVALID_ARGUMENT, HLConstant.WATCH_LOCATION_INVALID_ARGUMENT_CODE));
+            listener.onResult(Util.getError(Constant.WATCH_LOCATION_INVALID_ARGUMENT, Constant.WATCH_LOCATION_INVALID_ARGUMENT_CODE));
         }
 
         mWatchLocationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         Criteria crite = new Criteria();
-        crite.setAccuracy(model.equals("highAccuracy")?Criteria.ACCURACY_FINE:Criteria.ACCURACY_COARSE); //精度
+        crite.setAccuracy(model.equals("highAccuracy") ? Criteria.ACCURACY_FINE:Criteria.ACCURACY_COARSE); //精度
         crite.setPowerRequirement(Criteria.POWER_LOW); //功耗类型选择
         String provider = mWatchLocationManager.getBestProvider(crite, true);
 
@@ -152,16 +152,16 @@ public class HLGeoModule{
             };
             mWatchLocationManager.requestLocationUpdates(provider, maximumAge, 0, mLocationListener);
         } else {
-            listener.onResult(HLUtil.getError(HLConstant.LOCATION_UNAVAILABLE, HLConstant.LOCATION_UNAVAILABLE_CODE));
+            listener.onResult(Util.getError(Constant.LOCATION_UNAVAILABLE, Constant.LOCATION_UNAVAILABLE_CODE));
             return;
         }
 
     }
 
-    public void clearWatch(HLModuleResultListener listener) {
+    public void clearWatch(ModuleResultListener listener) {
         if (listener == null)return;
         if (mWatchLocationManager == null) {
-            listener.onResult(HLUtil.getError(HLConstant.LOCATION_SERVICE_BUSY, HLConstant.LOCATION_SERVICE_BUSY_CODE));
+            listener.onResult(Util.getError(Constant.LOCATION_SERVICE_BUSY, Constant.LOCATION_SERVICE_BUSY_CODE));
             return;
         }
         if (mLocationListener != null) {
@@ -186,8 +186,8 @@ public class HLGeoModule{
     }
 
     class MyCountDownTimer extends CountDownTimer{
-        HLModuleResultListener mListener;
-        public MyCountDownTimer(long millisInFuture, long countDownInterval, HLModuleResultListener listener) {
+        ModuleResultListener mListener;
+        public MyCountDownTimer(long millisInFuture, long countDownInterval, ModuleResultListener listener) {
             super(millisInFuture, countDownInterval);
             mListener = listener;
         }
@@ -207,7 +207,7 @@ public class HLGeoModule{
                 countDownTimer.cancel();
                 countDownTimer = null;
             }
-            mListener.onResult(HLUtil.getError(HLConstant.LOCATION_TIMEOUT, HLConstant.LOCATION_TIMEOUT_CODE));
+            mListener.onResult(Util.getError(Constant.LOCATION_TIMEOUT, Constant.LOCATION_TIMEOUT_CODE));
         }
     }
 }
